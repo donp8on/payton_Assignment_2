@@ -35,6 +35,10 @@ impl<T: PartialEq + Clone> DynamicLinkedList<T> {
         }
     }
 
+    //Retrieves the data at the specified index in the list.
+    //Returns an Option<T>, which is Some(data) if the index is valid, or None if it is out of bounds.
+    //self: This indicates that the method is borrowing the instance of the struct.
+    //index: usize: This is the index of the element we want to retrieve from the list.
     pub fn get(&self, index: usize) -> Option<T> {
         let mut current = self.head.as_ref();
 
