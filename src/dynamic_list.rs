@@ -3,6 +3,8 @@ pub struct Node<T> {
     pub next: Option<Box<Node<T>>>,
 }
 
+// The DynamicLinkedList struct represents a linked list data structure.
+// It contains a head pointer that points to the first node in the list.
 pub struct DynamicList<T> {
     pub head: Option<Box<Node<T>>>,
 }
