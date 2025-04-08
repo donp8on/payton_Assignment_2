@@ -107,7 +107,10 @@ impl<T: PartialEq + Clone> DynamicLinkedList<T> {
         false
     }
 
-    
+    // Deletes the node at the specified index from the list.
+    // Returns true if the node was found and deleted, false otherwise.
+    // self: This indicates that the method is borrowing the instance of the struct.
+    // index: usize: This is the index of the node we want to delete from the list.
     pub fn delete_at_index(&mut self, index: usize) -> bool {
         if index == 0 {
             if let Some(node) = self.head.take() {
