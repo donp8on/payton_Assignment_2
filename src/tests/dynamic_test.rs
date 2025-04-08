@@ -39,4 +39,20 @@ mod dynamic_tests {
         assert_eq!(list.get(4), None); // out of bounds (99 was not inserted)
     }
 
+    #[test]
+    fn test_delete_element() {
+        let mut list = DynamicLinkedList::new();
+        list.insert(1);
+        list.insert(2);
+        list.insert(3);
+
+        assert!(list.delete_element(2)); // Should delete 2
+        assert_eq!(list.get(0), Some(1));
+        assert_eq!(list.get(1), Some(3));
+        assert_eq!(list.get(2), None);
+
+        assert!(!list.delete_element(42)); // Not in list
+    }
+
+
 }
