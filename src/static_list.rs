@@ -229,6 +229,18 @@ impl<T, const N: usize> StaticLinkedList<T, N> {
         false
     }
     
+    pub fn find(&self, data: T) -> bool {
+        let mut current = self.head;
+    
+        while let Some(i) = current {
+            if self.nodes[i].data == Some(data.clone()) {
+                return true;
+            }
+            current = self.nodes[i].next;
+        }
+    
+        false
+    }
     
     
 
