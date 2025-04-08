@@ -147,7 +147,10 @@ impl<T, const N: usize> StaticLinkedList<T, N> {
         false
     }
     
-    
+    // Deletes the node at the specified index from the list.
+    // Returns true if the node was found and deleted, false otherwise.
+    // self: This indicates that the method is borrowing the instance of the struct.
+    // index: usize: This is the index of the node we want to delete from the list.
     pub fn delete_at_index(&mut self, index: usize) -> bool {
         let mut current = self.head;
         let mut prev = None;
