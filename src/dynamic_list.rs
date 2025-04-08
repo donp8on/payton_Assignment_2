@@ -31,6 +31,18 @@ impl<T: PartialEq + Clone> DynamicLinkedList<T> {
         }
     }
 
-    
+    pub fn get(&self, index: usize) -> Option<T> {
+        let mut current = self.head.as_ref();
+
+        for _ in 0..index {
+            current = match current {
+                Some(node) => node.next.as_ref(),
+                None => return None,
+            };
+        }
+
+        current.map(|node| node.data.clone())
+    }
+
 
 }
