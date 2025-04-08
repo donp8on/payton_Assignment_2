@@ -1,3 +1,4 @@
+// This struct defines a dynamic linked list data structure in Rust.
 pub struct Node<T> {
     pub data: T,
     pub next: Option<Box<Node<T>>>,
