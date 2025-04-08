@@ -51,5 +51,25 @@ mod static_tests {
         assert!(!list.delete_element(99)); // Not in list
     }
 
+    #[test]
+    fn test_delete_at_index_static() {
+        const N: usize = 6;
+        let mut list = StaticLinkedList::<i32, N>::new();
+
+        list.insert(10);
+        list.insert(20);
+        list.insert(30);
+
+        assert!(list.delete_at_index(1)); 
+        assert_eq!(list.get(0), Some(10));
+        assert_eq!(list.get(1), Some(30));
+        assert_eq!(list.get(2), None);
+
+        assert!(list.delete_at_index(0)); // Removes 10 → [30]
+        assert_eq!(list.get(0), Some(30));
+
+        assert!(!list.delete_at_index(5)); // Out of bounds
+    }
+
     
 }
