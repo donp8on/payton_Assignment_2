@@ -105,6 +105,21 @@ mod static_tests {
         assert!(!list.update_element_at_index(5, "purple")); // this is invalid
     }
 
+    #[test]
+    fn test_find_static() {
+        const N: usize = 6;
+        let mut list = StaticLinkedList::<i32, N>::new();
+
+        list.insert(100);
+        list.insert(200);
+        list.insert(300);
+
+        assert!(list.find(100));
+        assert!(list.find(300));
+        assert!(!list.find(999));
+    }
+
+
 
 
     
