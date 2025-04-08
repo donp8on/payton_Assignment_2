@@ -87,6 +87,20 @@ mod dynamic_tests {
         assert!(!list.update_element("x", "omega")); // not found
     }
 
+    #[test]
+    fn test_update_element_at_index() {
+        let mut list = DynamicLinkedList::new();
+        list.insert("red");
+        list.insert("green");
+        list.insert("blue");
+
+        assert!(list.update_element_at_index(1, "yellow")); // green → yellow
+        assert_eq!(list.get(0), Some("red"));
+        assert_eq!(list.get(1), Some("yellow"));
+        assert_eq!(list.get(2), Some("blue"));
+
+        assert!(!list.update_element_at_index(5, "purple")); // out of bounds
+    }
 
 
 }
