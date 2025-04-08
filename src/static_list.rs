@@ -75,5 +75,41 @@ impl<T, const N: usize> StaticLinkedList<T, N> {
         self.nodes[current].data.clone()
     }
 
+    pub fn insert_at_index(&mut self, index: usize, data: T) {
+        let new_index = match self.free {
+            Some(i) => i,
+            None => return,
+        };
+    
+        // Update free list
+        self.free = self.nodes[new_index].next;
+        self.nodes[new_index].data = Some(data);
+        self.nodes[new_index].next = None;
+    
+        // Insert at head
+        if index == 0 {
+            self.nodes[new_index].next = self.head;
+            self.head = Some(new_index);
+            return;
+        }
+    
+        // Traverse to (index - 1)
+        let mut current = self.head;
+        for _ in 0..index - 1 {
+            current = match current {
+                Some(i) => self.nodes[i].next,
+                None => return, // Out of bounds
+            };
+        }
+    
+        if let Some(prev_index) = current {
+            self.nodes[new_index].next = self.nodes[prev_index].next;
+            self.nodes[prev_index].next = Some(new_index);
+        }
+    }
+    
+
+
+
 }
 
