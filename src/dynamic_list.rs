@@ -57,7 +57,6 @@ impl<T: PartialEq + Clone> DynamicLinkedList<T> {
         current.map(|node| node.data.clone())
     }
 
-    
     pub fn insert_at_index(&mut self, index: usize, data: T) {
         if index == 0 {
             let new_node = Box::new(Node {
@@ -83,6 +82,21 @@ impl<T: PartialEq + Clone> DynamicLinkedList<T> {
             });
             node.next = Some(new_node);
         }
+    }
+
+    
+    pub fn delete_element(&mut self, data: T) -> bool {
+        let mut current = &mut self.head;
+
+        while let Some(ref mut node) = current {
+            if node.data == data {
+                *current = node.next.take();
+                return true;
+            }
+            current = &mut node.next;
+        }
+
+        false
     }
 
 
