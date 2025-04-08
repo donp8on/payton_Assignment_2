@@ -71,5 +71,23 @@ mod static_tests {
         assert!(!list.delete_at_index(5)); // Out of bounds
     }
 
+    #[test]
+    fn test_update_element_static() {
+        const N: usize = 6;
+        let mut list = StaticLinkedList::<&str, N>::new();
+
+        list.insert("a");
+        list.insert("b");
+        list.insert("c");
+
+        assert!(list.update_element("b", "beta")); // should change "b" to "beta"
+        assert_eq!(list.get(0), Some("a"));
+        assert_eq!(list.get(1), Some("beta"));
+        assert_eq!(list.get(2), Some("c"));
+
+        assert!(!list.update_element("x", "omega")); // not found
+    }
+
+
     
 }
