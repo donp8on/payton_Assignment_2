@@ -205,6 +205,25 @@ impl<T, const N: usize> StaticLinkedList<T, N> {
     
         false
     }
+
+    pub fn update_element_at_index(&mut self, index: usize, data: T) -> bool {
+        let mut current = self.head;
+    
+        for _ in 0..index {
+            current = match current {
+                Some(i) => self.nodes[i].next,
+                None => return false,
+            };
+        }
+    
+        if let Some(i) = current {
+            self.nodes[i].data = Some(data);
+            return true;
+        }
+    
+        false
+    }
+    
     
     
 
