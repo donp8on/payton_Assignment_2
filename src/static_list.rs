@@ -147,7 +147,43 @@ impl<T, const N: usize> StaticLinkedList<T, N> {
         false
     }
     
-
+    
+    pub fn delete_at_index(&mut self, index: usize) -> bool {
+        let mut current = self.head;
+        let mut prev = None;
+    
+        for _ in 0..index {
+            match current {
+                Some(i) => {
+                    prev = current;
+                    current = self.nodes[i].next;
+                }
+                None => return false, // Out of bounds
+            }
+        }
+    
+        match current {
+            Some(i) => {
+                let next = self.nodes[i].next;
+    
+                // Re-link
+                if let Some(prev_i) = prev {
+                    self.nodes[prev_i].next = next;
+                } else {
+                    self.head = next;
+                }
+    
+                // Return node to free list
+                self.nodes[i].data = None;
+                self.nodes[i].next = self.free;
+                self.free = Some(i);
+    
+                true
+            }
+            None => false,
+        }
+    }
+    
 
 }
 
