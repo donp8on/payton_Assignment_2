@@ -57,6 +57,11 @@ impl<T: PartialEq + Clone> DynamicLinkedList<T> {
         current.map(|node| node.data.clone())
     }
 
+    //Inserts a new node at the specified index in the list.
+    //If the index is out of bounds, the node will not be inserted.
+    //self: This indicates that the method is borrowing the instance of the struct.
+    //index: usize: This is the index where we want to insert the new node.
+    //data: T: This is a generic type parameter, meaning that the method can accept any type T.
     pub fn insert_at_index(&mut self, index: usize, data: T) {
         if index == 0 {
             let new_node = Box::new(Node {
