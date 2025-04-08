@@ -229,6 +229,10 @@ impl<T, const N: usize> StaticLinkedList<T, N> {
         false
     }
     
+    // Finds the first occurrence of the specified element in the list.
+    // Returns true if the element was found, false otherwise.
+    // self: This indicates that the method is borrowing the instance of the struct.
+    // data: T: This is a generic type parameter, meaning that the method can accept any type T.
     pub fn find(&self, data: T) -> bool {
         let mut current = self.head;
     
