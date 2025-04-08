@@ -102,5 +102,17 @@ mod dynamic_tests {
         assert!(!list.update_element_at_index(5, "purple")); // out of bounds
     }
 
+    #[test]
+    fn test_find() {
+        let mut list = DynamicLinkedList::new();
+        list.insert(100);
+        list.insert(200);
+        list.insert(300);
+
+        assert!(list.find(100));
+        assert!(list.find(300));
+        assert!(!list.find(999)); // Does not exist
+    }
+
 
 }
