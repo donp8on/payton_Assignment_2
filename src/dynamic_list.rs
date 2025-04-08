@@ -159,6 +159,24 @@ impl<T: PartialEq + Clone> DynamicLinkedList<T> {
         false
     }
 
+    pub fn update_element_at_index(&mut self, index: usize, data: T) -> bool {
+        let mut current = self.head.as_mut();
+        for _ in 0..index {
+            match current {
+                Some(node) => current = node.next.as_mut(),
+                None => return false,
+            }
+        }
+
+        if let Some(node) = current {
+            node.data = data;
+            return true;
+        }
+
+        false
+    }
+
+
 
 
 }
