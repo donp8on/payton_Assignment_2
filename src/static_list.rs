@@ -113,7 +113,36 @@ impl<T, const N: usize> StaticLinkedList<T, N> {
         }
     }
     
-
+    pub fn delete_element(&mut self, data: T) -> bool {
+        let mut prev: Option<usize> = None;
+        let mut current = self.head;
+    
+        while let Some(index) = current {
+            if self.nodes[index].data == Some(data.clone()) {
+                let next = self.nodes[index].next;
+    
+                // Unlink
+                if let Some(prev_index) = prev {
+                    self.nodes[prev_index].next = next;
+                } else {
+                    self.head = next;
+                }
+    
+                // Clear and return node to free list
+                self.nodes[index].data = None;
+                self.nodes[index].next = self.free;
+                self.free = Some(index);
+    
+                return true;
+            }
+    
+            prev = current;
+            current = self.nodes[index].next;
+        }
+    
+        false
+    }
+    
 
 
 }
