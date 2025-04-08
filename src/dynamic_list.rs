@@ -22,23 +22,23 @@ impl<T: PartialEq + Clone> DynamicLinkedList<T> {
     //mut self: This indicates that the method can modify the instance of the struct.
     //data: T: This is a generic type parameter, meaning that the method can accept any type T.
     pub fn insert(&mut self, data: T) {
-        let new_node = Box::new(Node {
-            data,
-            next: self.head.take(),
-        });
+        let new_node = Box::new(Node { data, next: None });
+    
         match self.head.as_mut() {
             None => self.head = Some(new_node),
             Some(mut node) => {
-                while let Some(next) = node.next.as_mut() {
-                    if next.data == new_node.data {
-                        return; // Duplicate found, do not insert
+                // Traverse safely by getting a mutable reference to the tail node
+                let mut current = &mut **node as *mut Node<T>;
+                unsafe {
+                    while let Some(ref mut next) = (*current).next {
+                        current = next.as_mut() as *mut Node<T>;
                     }
-                    node = next;
+                    (*current).next = Some(new_node);
                 }
-                node.next = Some(new_node);
             }
         }
     }
+    
 
     //Retrieves the data at the specified index in the list.
     //Returns an Option<T>, which is Some(data) if the index is valid, or None if it is out of bounds.
