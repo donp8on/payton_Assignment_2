@@ -187,6 +187,11 @@ impl<T, const N: usize> StaticLinkedList<T, N> {
         }
     }
 
+    // Updates the first occurrence of the specified element in the list with new data.
+    // Returns true if the element was found and updated, false otherwise.
+    // self: This indicates that the method is borrowing the instance of the struct.
+    // old_data: T: This is a generic type parameter, meaning that the method can accept any type T.
+    //// new_data: T: This is a generic type parameter, meaning that the method can accept any type T.
     pub fn update_element(&mut self, old_data: T, new_data: T) -> bool {
         let mut current = self.head;
     
