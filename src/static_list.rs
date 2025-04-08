@@ -206,6 +206,11 @@ impl<T, const N: usize> StaticLinkedList<T, N> {
         false
     }
 
+    // Updates the element at the specified index in the list with new data.
+    // Returns true if the index is valid and the element was updated, false otherwise.
+    // self: This indicates that the method is borrowing the instance of the struct.
+    // index: usize: This is the index of the element we want to update in the list.
+    // data: T: This is a generic type parameter, meaning that the method can accept any type T.
     pub fn update_element_at_index(&mut self, index: usize, data: T) -> bool {
         let mut current = self.head;
     
