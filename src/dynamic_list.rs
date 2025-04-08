@@ -107,6 +107,37 @@ impl<T: PartialEq + Clone> DynamicLinkedList<T> {
         false
     }
 
+    
+    pub fn delete_at_index(&mut self, index: usize) -> bool {
+        if index == 0 {
+            if let Some(node) = self.head.take() {
+                self.head = node.next;
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        let mut current = self.head.as_mut();
+        for _ in 0..index - 1 {
+            match current {
+                Some(node) => current = node.next.as_mut(),
+                None => return false,
+            }
+        }
+
+        if let Some(node) = current {
+            let next = node.next.take();
+            if let Some(mut next_node) = next {
+                node.next = next_node.next.take();
+                return true;
+            }
+        }
+
+        false
+    }
+
+
 
 
 }
