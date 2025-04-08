@@ -11,7 +11,11 @@ impl<T: PartialEq + Clone> DynamicLinkedList<T> {
     pub fn new() -> Self {
         DynamicList { head: None }
     }
-
+    
+    //Inserts a new node at the end of the list.
+    //If the data already exists, it will not be inserted again.
+    //mut self: This indicates that the method can modify the instance of the struct.
+    //data: T: This is a generic type parameter, meaning that the method can accept any type T.
     pub fn insert(&mut self, data: T) {
         let new_node = Box::new(Node {
             data,
