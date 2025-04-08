@@ -180,6 +180,19 @@ impl<T: PartialEq + Clone> DynamicLinkedList<T> {
         false
     }
 
+    
+    pub fn find(&self, data: T) -> bool {
+        let mut current = self.head.as_ref();
+
+        while let Some(node) = current {
+            if node.data == data {
+                return true;
+            }
+            current = node.next.as_ref();
+        }
+
+        false
+    }
 
 
 
