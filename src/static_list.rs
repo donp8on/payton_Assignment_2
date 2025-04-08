@@ -186,6 +186,21 @@ impl<T, const N: usize> StaticLinkedList<T, N> {
             None => false,
         }
     }
+
+    pub fn update_element(&mut self, old_data: T, new_data: T) -> bool {
+        let mut current = self.head;
+    
+        while let Some(i) = current {
+            if self.nodes[i].data == Some(old_data.clone()) {
+                self.nodes[i].data = Some(new_data);
+                return true;
+            }
+            current = self.nodes[i].next;
+        }
+    
+        false
+    }
+    
     
 
 }
