@@ -7,6 +7,8 @@ pub struct DynamicList<T> {
     pub head: Option<Box<Node<T>>>,
 }
 
+//Implementing the DynamicLinkedList struct with a generic type T.
+//The struct is generic, meaning it can hold any type T.
 impl<T: PartialEq + Clone> DynamicLinkedList<T> {
     pub fn new() -> Self {
         DynamicList { head: None }
