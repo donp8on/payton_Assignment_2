@@ -6,7 +6,7 @@ pub struct Node<T> {
 
 // The DynamicLinkedList struct represents a linked list data structure.
 // It contains a head pointer that points to the first node in the list.
-pub struct DynamicList<T> {
+pub struct DynamicLinkedList<T> {
     pub head: Option<Box<Node<T>>>,
 }
 
@@ -14,7 +14,7 @@ pub struct DynamicList<T> {
 //The struct is generic, meaning it can hold any type T.
 impl<T: PartialEq + Clone> DynamicLinkedList<T> {
     pub fn new() -> Self {
-        DynamicList { head: None }
+        DynamicLinkedList { head: None }
     }
     
     //Inserts a new node at the end of the list.
