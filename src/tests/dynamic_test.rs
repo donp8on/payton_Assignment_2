@@ -54,5 +54,24 @@ mod dynamic_tests {
         assert!(!list.delete_element(42)); // Not in list
     }
 
+    #[test]
+    fn test_delete_at_index() {
+        let mut list = DynamicLinkedList::new();
+        list.insert(10);
+        list.insert(20);
+        list.insert(30);
+
+        assert!(list.delete_at_index(1)); // Removes 20 → [10, 30]
+        assert_eq!(list.get(0), Some(10));
+        assert_eq!(list.get(1), Some(30));
+        assert_eq!(list.get(2), None);
+
+        assert!(list.delete_at_index(0)); // Removes 10 → [30]
+        assert_eq!(list.get(0), Some(30));
+
+        assert!(!list.delete_at_index(5)); // Out of bounds → false
+    }
+
+
 
 }
