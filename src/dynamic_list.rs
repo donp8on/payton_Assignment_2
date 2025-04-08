@@ -94,18 +94,22 @@ impl<T: PartialEq + Clone> DynamicLinkedList<T> {
     // self: This indicates that the method is borrowing the instance of the struct.
     // data: T: This is a generic type parameter, meaning that the method can accept any type T.
     pub fn delete_element(&mut self, data: T) -> bool {
-        let mut current = &mut self.head;
-
-        while let Some(ref mut node) = current {
-            if node.data == data {
-                *current = node.next.take();
+        let mut link = &mut self.head;
+    
+        while link.is_some() {
+            if link.as_ref().unwrap().data == data {
+                let next = link.as_mut().unwrap().next.take();
+                *link = next;
                 return true;
+            } else {
+                link = &mut link.as_mut().unwrap().next;
             }
-            current = &mut node.next;
         }
-
+    
         false
     }
+    
+    
 
     // Deletes the node at the specified index from the list.
     // Returns true if the node was found and deleted, false otherwise.
