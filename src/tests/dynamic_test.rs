@@ -72,6 +72,21 @@ mod dynamic_tests {
         assert!(!list.delete_at_index(5)); // Out of bounds → false
     }
 
+    #[test]
+    fn test_update_element() {
+        let mut list = DynamicLinkedList::new();
+        list.insert("a");
+        list.insert("b");
+        list.insert("c");
+
+        assert!(list.update_element("b", "beta")); // update existing
+        assert_eq!(list.get(0), Some("a"));
+        assert_eq!(list.get(1), Some("beta"));
+        assert_eq!(list.get(2), Some("c"));
+
+        assert!(!list.update_element("x", "omega")); // not found
+    }
+
 
 
 }
