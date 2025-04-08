@@ -32,6 +32,10 @@ impl<T, const N: usize> StaticLinkedList<T, N> {
         }
     }
 
+    /// Retrieves the data at the specified index in the list.
+    /// Returns an Option<T>, which is Some(data) if the index is valid, or None if it is out of bounds.
+    /// mut self: This indicates that the method is borrowing the instance of the struct.
+    /// data: T: This is a generic type parameter, meaning that the method can accept any type T.
     pub fn insert(&mut self, data: T) {
         // No space available
         let free_index = match self.free {
