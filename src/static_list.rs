@@ -57,6 +57,18 @@ impl<T, const N: usize> StaticLinkedList<T, N> {
                 self.nodes[current_index].next = Some(free_index); // Append to tail
             }
         }
+        
+    }
+
+    pub fn get(&self, index: usize) -> Option<T> {
+        let mut current = self.head?;
+        for _ in 0..index {
+            match self.nodes[current].next {
+                Some(next) => current = next,
+                None => return None,
+            }
+        }
+        self.nodes[current].data.clone()
     }
 
 }
