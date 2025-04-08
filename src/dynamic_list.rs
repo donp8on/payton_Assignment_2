@@ -180,7 +180,10 @@ impl<T: PartialEq + Clone> DynamicLinkedList<T> {
         false
     }
 
-    
+    // Finds the first occurrence of the specified data in the list.
+    // Returns true if the element was found, false otherwise.
+    // self: This indicates that the method is borrowing the instance of the struct.
+    // data: T: This is a generic type parameter, meaning that the method can accept any type T.
     pub fn find(&self, data: T) -> bool {
         let mut current = self.head.as_ref();
 
