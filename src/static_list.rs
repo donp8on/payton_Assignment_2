@@ -16,7 +16,7 @@ pub struct StaticLinkedList<T, const N: usize> {
 
 /// Implementation of the StaticLinkedList structure
 /// This implementation provides methods to create a new static linked list
-impl<T, const N: usize> StaticLinkedList<T, N> {
+impl<T: Clone + PartialEq, const N: usize> StaticLinkedList<T, N> {
     pub fn new() -> Self {
         let mut nodes: [StaticNode<T>; N] = std::array::from_fn(|i| StaticNode {
             data: None,
