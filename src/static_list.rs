@@ -32,5 +32,28 @@ impl<T, const N: usize> StaticLinkedList<T, N> {
         }
     }
 
+    pub fn insert(&mut self, data: T) {
+        // No space available
+        let free_index = match self.free {
+            Some(i) => i,
+            None => return,
+        };
+
+        // Take next from free list
+        self.free = self.nodes[free_index].next;
+        self.nodes[free_index].data = Some(data);
+        self.nodes[free_index].next = None;
+
+        match self.head {
+            None => self.head = Some(free_index), // First insert
+            Some(mut current_index) => {
+                while let Some(next_index) = self.nodes[current_index].next {
+                    current_index = next_index;
+                }
+                self.nodes[current_index].next = Some(free_index); // Append to tail
+            }
+        }
+    }
+
 }
 
