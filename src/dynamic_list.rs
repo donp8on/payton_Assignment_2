@@ -159,6 +159,10 @@ impl<T: PartialEq + Clone> DynamicLinkedList<T> {
         false
     }
 
+    // Updates the element at the specified index with new data.
+    // Returns true if the element was found and updated, false otherwise.
+    // self: This indicates that the method is borrowing the instance of the struct.
+    // index: usize: This is the index of the element we want to update in the list.
     pub fn update_element_at_index(&mut self, index: usize, data: T) -> bool {
         let mut current = self.head.as_mut();
         for _ in 0..index {
