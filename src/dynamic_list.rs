@@ -140,6 +140,11 @@ impl<T: PartialEq + Clone> DynamicLinkedList<T> {
         false
     }
 
+    // Updates the first occurrence of the specified data with new data.
+    // Returns true if the element was found and updated, false otherwise.
+    // self: This indicates that the method is borrowing the instance of the struct.
+    // old_data: T: This is the data we want to update in the list.
+    // new_data: T: This is the new data we want to replace the old data with.
     pub fn update_element(&mut self, old_data: T, new_data: T) -> bool {
         let mut current = self.head.as_mut();
 
