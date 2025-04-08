@@ -3,7 +3,7 @@ mod static_tests {
     use crate::static_list::StaticLinkedList;
 
     #[test]
-    fn test_insert_static() {
+    fn test_insert_and_get_static() {
         const N: usize = 5;
         let mut list = StaticLinkedList::<i32, N>::new();
         list.insert(10);
